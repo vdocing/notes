@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
-        <meta name="robots" content="noindex" />
+        <title>ffi</title>
 
 
         <!-- Custom HTML head -->
@@ -14,25 +13,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="theme/pagetoc.css">
-        <link rel="stylesheet" href="theme/rust-syntax-bg-highlight.css">
+        <link rel="stylesheet" href="../theme/pagetoc.css">
+        <link rel="stylesheet" href="../theme/rust-syntax-bg-highlight.css">
 
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -40,7 +39,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -86,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="rust/abi.html"><strong aria-hidden="true">2.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust/abi.html"><strong aria-hidden="true">2.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="rust/ffi.html"><strong aria-hidden="true">2.2.</strong> ffi</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">2.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">2.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html" class="active"><strong aria-hidden="true">2.2.</strong> ffi</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -118,7 +117,7 @@
                     <h1 class="menu-title"></h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -237,202 +236,7 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <h1 id="mdbook"><a class="header" href="#mdbook">mdbook</a></h1>
-<h2 id="mdbook-install"><a class="header" href="#mdbook-install">mdbook install</a></h2>
-<pre><code>cargo install mdbook
-</code></pre>
-<h2 id="mdbook-init"><a class="header" href="#mdbook-init">mdbook init</a></h2>
-<pre><code>mdbook init
-</code></pre>
-<h2 id="mdbook-build"><a class="header" href="#mdbook-build">mdbook build</a></h2>
-<pre><code>mdbook build
-</code></pre>
-<h2 id="mdbook-serve"><a class="header" href="#mdbook-serve">mdbook serve</a></h2>
-<pre><code>mdbook serve
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><p>在Rust中使用ABI和FFI与C/C++代码交互时，你需要确保Rust的数据类型能够正确地映射到C/C++的数据类型。以下是一个详细的对照表，列出了Rust中的数据类型与C/C++中的对应类型：</p>
-<h3 id="整数类型"><a class="header" href="#整数类型">整数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>i8</code></td><td><code>signed char</code></td></tr>
-<tr><td><code>u8</code></td><td><code>unsigned char</code></td></tr>
-<tr><td><code>i16</code></td><td><code>short</code></td></tr>
-<tr><td><code>u16</code></td><td><code>unsigned short</code></td></tr>
-<tr><td><code>i32</code></td><td><code>int</code></td></tr>
-<tr><td><code>u32</code></td><td><code>unsigned int</code></td></tr>
-<tr><td><code>i64</code></td><td><code>long long</code></td></tr>
-<tr><td><code>u64</code></td><td><code>unsigned long long</code></td></tr>
-<tr><td><code>isize</code></td><td><code>ptrdiff_t</code> / <code>ssize_t</code></td></tr>
-<tr><td><code>usize</code></td><td><code>size_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="浮点数类型"><a class="header" href="#浮点数类型">浮点数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>f32</code></td><td><code>float</code></td></tr>
-<tr><td><code>f64</code></td><td><code>double</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="布尔类型"><a class="header" href="#布尔类型">布尔类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>bool</code></td><td><code>int</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符类型"><a class="header" href="#字符类型">字符类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>char</code></td><td><code>wchar_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>*const T</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>*mut T</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a str</code></td><td><code>const char *</code></td></tr>
-<tr><td><code>String</code></td><td><code>char *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="数组和向量"><a class="header" href="#数组和向量">数组和向量</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a [T]</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>Vec&lt;T&gt;</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="函数指针"><a class="header" href="#函数指针">函数指针</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>extern &quot;C&quot; fn(...)</code></td><td><code>void (*)()</code></td></tr>
-<tr><td><code>extern &quot;C&quot; fn(i32, i32) -&gt; i32</code></td><td><code>int (*)(int, int)</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="结构体和枚举"><a class="header" href="#结构体和枚举">结构体和枚举</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>struct</code></td><td><code>struct</code></td></tr>
-<tr><td><code>enum</code></td><td><code>enum</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="特殊类型"><a class="header" href="#特殊类型">特殊类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>c_void</code></td><td><code>void</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h3>
-<ol>
-<li>
-<p><strong>布尔类型</strong> (<code>bool</code>)：在 C/C++ 中通常使用 <code>int</code> 来表示布尔值，而在 Rust 中则使用专门的 <code>bool</code> 类型。在 FFI 的上下文中，<code>bool</code> 通常会被转换为 <code>i32</code> 或 <code>u32</code>。</p>
-</li>
-<li>
-<p><strong>字符类型</strong> (<code>char</code>)：Rust 的 <code>char</code> 类型是一个 Unicode 标量值，而 C/C++ 语言中的 <code>char</code> 类型是一个单字节字符。在 FFI 中，通常使用 <code>u16</code> 或 <code>u32</code> 来表示 Unicode 字符，这取决于目标平台的宽字符类型。</p>
-</li>
-<li>
-<p><strong>字符串类型</strong> (<code>&amp;str</code> 和 <code>String</code>)：在 Rust 中，<code>&amp;str</code> 是一个不可变的引用到有效的 UTF-8 编码的字符串切片，而 <code>String</code> 是一个可变的字符串缓冲区。在 C/C++ 中，字符串通常由一个空终止的字符数组表示。在 FFI 的上下文中，你通常需要使用 <code>*const i8</code> 或 <code>*const u8</code> 来表示 C 字符串。</p>
-</li>
-<li>
-<p><strong>动态数组</strong> (<code>Vec&lt;T&gt;</code>)：Rust 中的 <code>Vec&lt;T&gt;</code> 类型类似于 C/C++ 中的动态数组。在 FFI 中，你通常需要使用裸指针 <code>*mut T</code> 来表示动态分配的数组，并且可能需要额外的长度参数来指示数组的大小。</p>
-</li>
-<li>
-<p><strong>函数指针</strong>：Rust 中的函数指针类型（例如 <code>extern &quot;C&quot; fn(i32, i32) -&gt; i32</code>）可以直接映射到 C/C++ 中的函数指针类型。</p>
-</li>
-<li>
-<p><strong>结构体和枚举</strong>：Rust 的结构体和枚举可以映射到 C/C++ 中的结构体和枚举，但是需要注意内存布局和对齐规则。在 Rust 中使用 <code>repr(C)</code> 属性可以确保结构体具有与 C/C++ 语言相同的布局。</p>
-</li>
-<li>
-<p><strong><code>std::os::raw::c_*</code> 类型</strong>：在 Rust 的标准库中，<code>std::os::raw</code> 模块提供了与 C/C++ 类型直接对应的原始类型，例如 <code>c_char</code>、<code>c_int</code> 等，这些类型在编写 FFI 接口时非常有用。</p>
-</li>
-</ol>
-<p>请注意，上述对照表并不是详尽无遗的，但它涵盖了大多数常见的场景。在实际使用中，你还需要考虑特定平台和库的细节，以及 Rust 和 C/C++ 之间的任何潜在差异。</p>
-<div style="break-before: page; page-break-before: always;"></div><p>在Rust中使用ABI和FFI与C/C++代码交互时，你需要确保Rust的数据类型能够正确地映射到C/C++的数据类型。以下是一个详细的对照表，列出了Rust中的数据类型与C/C++中的对应类型：</p>
-<h3 id="整数类型-1"><a class="header" href="#整数类型-1">整数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>i8</code></td><td><code>signed char</code></td></tr>
-<tr><td><code>u8</code></td><td><code>unsigned char</code></td></tr>
-<tr><td><code>i16</code></td><td><code>short</code></td></tr>
-<tr><td><code>u16</code></td><td><code>unsigned short</code></td></tr>
-<tr><td><code>i32</code></td><td><code>int</code></td></tr>
-<tr><td><code>u32</code></td><td><code>unsigned int</code></td></tr>
-<tr><td><code>i64</code></td><td><code>long long</code></td></tr>
-<tr><td><code>u64</code></td><td><code>unsigned long long</code></td></tr>
-<tr><td><code>isize</code></td><td><code>ptrdiff_t</code> / <code>ssize_t</code></td></tr>
-<tr><td><code>usize</code></td><td><code>size_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="浮点数类型-1"><a class="header" href="#浮点数类型-1">浮点数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>f32</code></td><td><code>float</code></td></tr>
-<tr><td><code>f64</code></td><td><code>double</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="布尔类型-1"><a class="header" href="#布尔类型-1">布尔类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>bool</code></td><td><code>int</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符类型-1"><a class="header" href="#字符类型-1">字符类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>char</code></td><td><code>wchar_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="指针类型-1"><a class="header" href="#指针类型-1">指针类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>*const T</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>*mut T</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符串类型-1"><a class="header" href="#字符串类型-1">字符串类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a str</code></td><td><code>const char *</code></td></tr>
-<tr><td><code>String</code></td><td><code>char *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="数组和向量-1"><a class="header" href="#数组和向量-1">数组和向量</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a [T]</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>Vec&lt;T&gt;</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="函数指针-1"><a class="header" href="#函数指针-1">函数指针</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>extern &quot;C&quot; fn(...)</code></td><td><code>void (*)()</code></td></tr>
-<tr><td><code>extern &quot;C&quot; fn(i32, i32) -&gt; i32</code></td><td><code>int (*)(int, int)</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="结构体和枚举-1"><a class="header" href="#结构体和枚举-1">结构体和枚举</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>struct</code></td><td><code>struct</code></td></tr>
-<tr><td><code>enum</code></td><td><code>enum</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="特殊类型-1"><a class="header" href="#特殊类型-1">特殊类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>c_void</code></td><td><code>void</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="注意事项-1"><a class="header" href="#注意事项-1">注意事项</a></h3>
-<ol>
-<li>
-<p><strong>布尔类型</strong> (<code>bool</code>)：在 C/C++ 中通常使用 <code>int</code> 来表示布尔值，而在 Rust 中则使用专门的 <code>bool</code> 类型。在 FFI 的上下文中，<code>bool</code> 通常会被转换为 <code>i32</code> 或 <code>u32</code>。</p>
-</li>
-<li>
-<p><strong>字符类型</strong> (<code>char</code>)：Rust 的 <code>char</code> 类型是一个 Unicode 标量值，而 C/C++ 语言中的 <code>char</code> 类型是一个单字节字符。在 FFI 中，通常使用 <code>u16</code> 或 <code>u32</code> 来表示 Unicode 字符，这取决于目标平台的宽字符类型。</p>
-</li>
-<li>
-<p><strong>字符串类型</strong> (<code>&amp;str</code> 和 <code>String</code>)：在 Rust 中，<code>&amp;str</code> 是一个不可变的引用到有效的 UTF-8 编码的字符串切片，而 <code>String</code> 是一个可变的字符串缓冲区。在 C/C++ 中，字符串通常由一个空终止的字符数组表示。在 FFI 的上下文中，你通常需要使用 <code>*const i8</code> 或 <code>*const u8</code> 来表示 C 字符串。</p>
-</li>
-<li>
-<p><strong>动态数组</strong> (<code>Vec&lt;T&gt;</code>)：Rust 中的 <code>Vec&lt;T&gt;</code> 类型类似于 C/C++ 中的动态数组。在 FFI 中，你通常需要使用裸指针 <code>*mut T</code> 来表示动态分配的数组，并且可能需要额外的长度参数来指示数组的大小。</p>
-</li>
-<li>
-<p><strong>函数指针</strong>：Rust 中的函数指针类型（例如 <code>extern &quot;C&quot; fn(i32, i32) -&gt; i32</code>）可以直接映射到 C/C++ 中的函数指针类型。</p>
-</li>
-<li>
-<p><strong>结构体和枚举</strong>：Rust 的结构体和枚举可以映射到 C/C++ 中的结构体和枚举，但是需要注意内存布局和对齐规则。在 Rust 中使用 <code>repr(C)</code> 属性可以确保结构体具有与 C/C++ 语言相同的布局。</p>
-</li>
-<li>
-<p><strong><code>std::os::raw::c_*</code> 类型</strong>：在 Rust 的标准库中，<code>std::os::raw</code> 模块提供了与 C/C++ 类型直接对应的原始类型，例如 <code>c_char</code>、<code>c_int</code> 等，这些类型在编写 FFI 接口时非常有用。</p>
-</li>
-</ol>
-<p>请注意，上述对照表并不是详尽无遗的，但它涵盖了大多数常见的场景。在实际使用中，你还需要考虑特定平台和库的细节，以及 Rust 和 C/C++ 之间的任何潜在差异。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="foreign-function-interface"><a class="header" href="#foreign-function-interface">Foreign Function Interface</a></h1>
+                        <h1 id="foreign-function-interface"><a class="header" href="#foreign-function-interface">Foreign Function Interface</a></h1>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This guide will use the <a href="https://github.com/google/snappy">snappy</a>
 compression/decompression library as an introduction to writing bindings for
@@ -629,7 +433,7 @@ mod tests {
 <p>Foreign libraries often hand off ownership of resources to the calling code.
 When this occurs, we must use Rust's destructors to provide safety and guarantee
 the release of these resources (especially in the case of panic).</p>
-<p>For more about destructors, see the <a href="rust/../std/ops/trait.Drop.html">Drop trait</a>.</p>
+<p>For more about destructors, see the <a href="../std/ops/trait.Drop.html">Drop trait</a>.</p>
 <h2 id="calling-rust-code-from-c"><a class="header" href="#calling-rust-code-from-c">Calling Rust code from C</a></h2>
 <p>You may wish to compile Rust code in a way so that it can be called from C.
 This is fairly easy, but requires a few things.</p>
@@ -641,7 +445,7 @@ pub extern &quot;C&quot; fn hello_from_rust() {
     println!(&quot;Hello from Rust!&quot;);
 }
 <span class="boring">fn main() {}</span></code></pre></pre>
-<p>The <code>extern &quot;C&quot;</code> makes this function adhere to the C calling convention, as discussed below in &quot;<a href="rust/ffi.html#foreign-calling-conventions">Foreign Calling Conventions</a>&quot;.
+<p>The <code>extern &quot;C&quot;</code> makes this function adhere to the C calling convention, as discussed below in &quot;<a href="ffi.html#foreign-calling-conventions">Foreign Calling Conventions</a>&quot;.
 The <code>no_mangle</code> attribute turns off Rust's name mangling, so that it has a well defined symbol to link to.</p>
 <p>Then, to compile Rust code as a shared library that can be called from C, add the following to your <code>Cargo.toml</code>:</p>
 <pre><code class="language-toml">[lib]
@@ -1095,7 +899,7 @@ extern &quot;C&quot; fn assert_nonzero(input: u32) {
 to (safely) abort the process, whether or not compiled with <code>panic=abort</code>.</p>
 <h3 id="catching-panic-preemptively"><a class="header" href="#catching-panic-preemptively">Catching <code>panic</code> preemptively</a></h3>
 <p>If you are writing Rust code that may panic, and you don't wish to abort the
-process if it panics, you must use <a href="rust/../std/panic/fn.catch_unwind.html"><code>catch_unwind</code></a>:</p>
+process if it panics, you must use <a href="../std/panic/fn.catch_unwind.html"><code>catch_unwind</code></a>:</p>
 <pre><pre class="playground"><code class="language-rust">use std::panic::catch_unwind;
 
 #[no_mangle]
@@ -1110,8 +914,8 @@ pub extern &quot;C&quot; fn oh_no() -&gt; i32 {
 }
 
 fn main() {}</code></pre></pre>
-<p>Please note that <a href="rust/../std/panic/fn.catch_unwind.html"><code>catch_unwind</code></a> will only catch unwinding panics, not
-those that abort the process. See the documentation of <a href="rust/../std/panic/fn.catch_unwind.html"><code>catch_unwind</code></a>
+<p>Please note that <a href="../std/panic/fn.catch_unwind.html"><code>catch_unwind</code></a> will only catch unwinding panics, not
+those that abort the process. See the documentation of <a href="../std/panic/fn.catch_unwind.html"><code>catch_unwind</code></a>
 for more information.</p>
 <h2 id="representing-opaque-structs"><a class="header" href="#representing-opaque-structs">Representing opaque structs</a></h2>
 <p>Sometimes, a C library wants to provide a pointer to something, but not let you know the internal details of the thing it wants.
@@ -1176,6 +980,9 @@ But it's currently (as of June 2021) unstable and has some unresolved questions,
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../rust/abi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
 
                         <div style="clear: both"></div>
@@ -1184,6 +991,9 @@ But it's currently (as of June 2021) unstable and has some unresolved questions,
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../rust/abi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
             </nav>
 
@@ -1197,24 +1007,17 @@ But it's currently (as of June 2021) unstable and has some unresolved questions,
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript" src="theme/pagetoc.js"></script>
+        <script type="text/javascript" src="../theme/pagetoc.js"></script>
 
-        <script type="text/javascript">
-        window.addEventListener('load', function() {
-            MathJax.Hub.Register.StartupHook('End', function() {
-                window.setTimeout(window.print, 100);
-            });
-        });
-        </script>
 
     </body>
 </html>
