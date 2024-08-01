@@ -1,0 +1,21 @@
+[book]
+authors = ["c"]
+language = "en"
+multilingual = false
+src = "src"
+
+
+[build]
+build-dir = "docs"
+
+
+[output.html]
+default-theme = "light"
+mathjax-support = true
+additional-css = ["theme/pagetoc.css", "theme/rust-syntax-bg-highlight.css"]
+additional-js = ["theme/pagetoc.js"]
+
+
+[output.html.fold]
+enable = false
+level = 1
