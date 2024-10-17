@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>abi</title>
+        <title>offline</title>
 
 
         <!-- Custom HTML head -->
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html" class="active"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -236,107 +236,92 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <p>在Rust中使用ABI和FFI与C/C++代码交互时，你需要确保Rust的数据类型能够正确地映射到C/C++的数据类型。以下是一个详细的对照表，列出了Rust中的数据类型与C/C++中的对应类型：</p>
-<h3 id="整数类型"><a class="header" href="#整数类型">整数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>i8</code></td><td><code>signed char</code></td></tr>
-<tr><td><code>u8</code></td><td><code>unsigned char</code></td></tr>
-<tr><td><code>i16</code></td><td><code>short</code></td></tr>
-<tr><td><code>u16</code></td><td><code>unsigned short</code></td></tr>
-<tr><td><code>i32</code></td><td><code>int</code></td></tr>
-<tr><td><code>u32</code></td><td><code>unsigned int</code></td></tr>
-<tr><td><code>i64</code></td><td><code>long long</code></td></tr>
-<tr><td><code>u64</code></td><td><code>unsigned long long</code></td></tr>
-<tr><td><code>isize</code></td><td><code>ptrdiff_t</code> / <code>ssize_t</code></td></tr>
-<tr><td><code>usize</code></td><td><code>size_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="浮点数类型"><a class="header" href="#浮点数类型">浮点数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>f32</code></td><td><code>float</code></td></tr>
-<tr><td><code>f64</code></td><td><code>double</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="布尔类型"><a class="header" href="#布尔类型">布尔类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>bool</code></td><td><code>int</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符类型"><a class="header" href="#字符类型">字符类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>char</code></td><td><code>wchar_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>*const T</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>*mut T</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a str</code></td><td><code>const char *</code></td></tr>
-<tr><td><code>String</code></td><td><code>char *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="数组和向量"><a class="header" href="#数组和向量">数组和向量</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a [T]</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>Vec&lt;T&gt;</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="函数指针"><a class="header" href="#函数指针">函数指针</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>extern "C" fn(...)</code></td><td><code>void (*)()</code></td></tr>
-<tr><td><code>extern "C" fn(i32, i32) -&gt; i32</code></td><td><code>int (*)(int, int)</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="结构体和枚举"><a class="header" href="#结构体和枚举">结构体和枚举</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>struct</code></td><td><code>struct</code></td></tr>
-<tr><td><code>enum</code></td><td><code>enum</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="特殊类型"><a class="header" href="#特殊类型">特殊类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>c_void</code></td><td><code>void</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h3>
+                        <h1 id="rust离线使用"><a class="header" href="#rust离线使用">Rust离线使用</a></h1>
+<p>在没有网络连接的离线环境中，使用Rust进行工具链、组件和项目依赖的安装和管理是有些挑战的，但可以通过以下步骤解决：</p>
+<h2 id="准备离线工具链和组件"><a class="header" href="#准备离线工具链和组件">准备离线工具链和组件</a></h2>
+<p>Rust 的工具链和组件通过 Rustup 管理，你可以在有网络的机器上下载工具链和组件，并在离线机器上安装。</p>
+<h3 id="步骤"><a class="header" href="#步骤">步骤：</a></h3>
+<h4 id="在有网络的机器上"><a class="header" href="#在有网络的机器上">在有网络的机器上：</a></h4>
 <ol>
 <li>
-<p><strong>布尔类型</strong> (<code>bool</code>)：在 C/C++ 中通常使用 <code>int</code> 来表示布尔值，而在 Rust 中则使用专门的 <code>bool</code> 类型。在 FFI 的上下文中，<code>bool</code> 通常会被转换为 <code>i32</code> 或 <code>u32</code>。</p>
+<p>安装 Rustup：</p>
+<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
 </li>
 <li>
-<p><strong>字符类型</strong> (<code>char</code>)：Rust 的 <code>char</code> 类型是一个 Unicode 标量值，而 C/C++ 语言中的 <code>char</code> 类型是一个单字节字符。在 FFI 中，通常使用 <code>u16</code> 或 <code>u32</code> 来表示 Unicode 字符，这取决于目标平台的宽字符类型。</p>
-</li>
-<li>
-<p><strong>字符串类型</strong> (<code>&amp;str</code> 和 <code>String</code>)：在 Rust 中，<code>&amp;str</code> 是一个不可变的引用到有效的 UTF-8 编码的字符串切片，而 <code>String</code> 是一个可变的字符串缓冲区。在 C/C++ 中，字符串通常由一个空终止的字符数组表示。在 FFI 的上下文中，你通常需要使用 <code>*const i8</code> 或 <code>*const u8</code> 来表示 C 字符串。</p>
-</li>
-<li>
-<p><strong>动态数组</strong> (<code>Vec&lt;T&gt;</code>)：Rust 中的 <code>Vec&lt;T&gt;</code> 类型类似于 C/C++ 中的动态数组。在 FFI 中，你通常需要使用裸指针 <code>*mut T</code> 来表示动态分配的数组，并且可能需要额外的长度参数来指示数组的大小。</p>
-</li>
-<li>
-<p><strong>函数指针</strong>：Rust 中的函数指针类型（例如 <code>extern "C" fn(i32, i32) -&gt; i32</code>）可以直接映射到 C/C++ 中的函数指针类型。</p>
-</li>
-<li>
-<p><strong>结构体和枚举</strong>：Rust 的结构体和枚举可以映射到 C/C++ 中的结构体和枚举，但是需要注意内存布局和对齐规则。在 Rust 中使用 <code>repr(C)</code> 属性可以确保结构体具有与 C/C++ 语言相同的布局。</p>
-</li>
-<li>
-<p><strong><code>std::os::raw::c_*</code> 类型</strong>：在 Rust 的标准库中，<code>std::os::raw</code> 模块提供了与 C/C++ 类型直接对应的原始类型，例如 <code>c_char</code>、<code>c_int</code> 等，这些类型在编写 FFI 接口时非常有用。</p>
+<p>下载工具链和组件（例如稳定版工具链和 rust-src 组件）：</p>
+<pre><code>rustup toolchain install stable
+rustup component add rust-src --toolchain stable
+</code></pre>
 </li>
 </ol>
-<p>请注意，上述对照表并不是详尽无遗的，但它涵盖了大多数常见的场景。在实际使用中，你还需要考虑特定平台和库的细节，以及 Rust 和 C/C++ 之间的任何潜在差异。</p>
+<p>可以根据需要替换不同的版本或组件。</p>
+<ol start="3">
+<li>下载工具链和组件到本地缓存：
+<pre><code>rustup update
+</code></pre>
+</li>
+</ol>
+<p>所有下载的工具链和组件会保存在本地 Rustup 的缓存目录下，通常位于 ~/.rustup。</p>
+<h4 id="将缓存拷贝到离线环境"><a class="header" href="#将缓存拷贝到离线环境">将缓存拷贝到离线环境：</a></h4>
+<ol>
+<li>
+<p>将 ~/.rustup 文件夹拷贝到离线的机器上相同路径下。</p>
+</li>
+<li>
+<p>在离线机器上设置环境变量：</p>
+<pre><code>export RUSTUP_HOME=~/.rustup
+export CARGO_HOME=~/.cargo
+</code></pre>
+</li>
+<li>
+<p>验证 Rust 工具链是否可用：</p>
+<pre><code>rustc --version
+cargo --version
+</code></pre>
+</li>
+</ol>
+<h2 id="离线添加项目依赖"><a class="header" href="#离线添加项目依赖">离线添加项目依赖</a></h2>
+<p>Rust 项目依赖通过 Cargo 管理，通常会从 crates.io 下载依赖。在离线环境下，可以提前下载依赖并手动管理。</p>
+<h3 id="步骤-1"><a class="header" href="#步骤-1">步骤：</a></h3>
+<h4 id="在有网络的机器上-1"><a class="header" href="#在有网络的机器上-1">在有网络的机器上：</a></h4>
+<ol>
+<li>进入项目目录，运行：
+<pre><code>cargo fetch
+</code></pre>
+</li>
+</ol>
+<p>这会将项目的依赖下载到 ~/.cargo/registry 中。</p>
+<ol start="2">
+<li>
+<p>如果想一次性下载多个项目的依赖，或者不同的版本，你可以提前配置好 Cargo.toml 文件并运行 cargo fetch。</p>
+</li>
+<li>
+<p>将依赖缓存（~/.cargo/registry 和 ~/.cargo/git）拷贝到离线机器上。</p>
+</li>
+</ol>
+<h4 id="在离线机器上"><a class="header" href="#在离线机器上">在离线机器上：</a></h4>
+<ol>
+<li>
+<p>把从有网络的机器拷贝过来的 ~/.cargo/registry 和 ~/.cargo/git 放到离线机器上的相同目录下。</p>
+</li>
+<li>
+<p>在项目目录中运行以下命令以确认依赖可用：</p>
+<pre><code>cargo build
+</code></pre>
+</li>
+</ol>
+<p>通过上述步骤，你应该可以在离线环境中使用 Rust 工具链、组件以及管理项目依赖。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../os/firewall.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../rust/mem.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../rust/abi.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../rust/rc&amp;cell.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -346,11 +331,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../os/firewall.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../rust/mem.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../rust/abi.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../rust/rc&amp;cell.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

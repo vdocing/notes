@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>abi</title>
+        <title>mem</title>
 
 
         <!-- Custom HTML head -->
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html" class="active"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -236,107 +236,107 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <p>在Rust中使用ABI和FFI与C/C++代码交互时，你需要确保Rust的数据类型能够正确地映射到C/C++的数据类型。以下是一个详细的对照表，列出了Rust中的数据类型与C/C++中的对应类型：</p>
-<h3 id="整数类型"><a class="header" href="#整数类型">整数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>i8</code></td><td><code>signed char</code></td></tr>
-<tr><td><code>u8</code></td><td><code>unsigned char</code></td></tr>
-<tr><td><code>i16</code></td><td><code>short</code></td></tr>
-<tr><td><code>u16</code></td><td><code>unsigned short</code></td></tr>
-<tr><td><code>i32</code></td><td><code>int</code></td></tr>
-<tr><td><code>u32</code></td><td><code>unsigned int</code></td></tr>
-<tr><td><code>i64</code></td><td><code>long long</code></td></tr>
-<tr><td><code>u64</code></td><td><code>unsigned long long</code></td></tr>
-<tr><td><code>isize</code></td><td><code>ptrdiff_t</code> / <code>ssize_t</code></td></tr>
-<tr><td><code>usize</code></td><td><code>size_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="浮点数类型"><a class="header" href="#浮点数类型">浮点数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>f32</code></td><td><code>float</code></td></tr>
-<tr><td><code>f64</code></td><td><code>double</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="布尔类型"><a class="header" href="#布尔类型">布尔类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>bool</code></td><td><code>int</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符类型"><a class="header" href="#字符类型">字符类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>char</code></td><td><code>wchar_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>*const T</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>*mut T</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a str</code></td><td><code>const char *</code></td></tr>
-<tr><td><code>String</code></td><td><code>char *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="数组和向量"><a class="header" href="#数组和向量">数组和向量</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a [T]</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>Vec&lt;T&gt;</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="函数指针"><a class="header" href="#函数指针">函数指针</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>extern "C" fn(...)</code></td><td><code>void (*)()</code></td></tr>
-<tr><td><code>extern "C" fn(i32, i32) -&gt; i32</code></td><td><code>int (*)(int, int)</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="结构体和枚举"><a class="header" href="#结构体和枚举">结构体和枚举</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>struct</code></td><td><code>struct</code></td></tr>
-<tr><td><code>enum</code></td><td><code>enum</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="特殊类型"><a class="header" href="#特殊类型">特殊类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>c_void</code></td><td><code>void</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h3>
+                        <p>在Rust的内存分配中，程序的内存通常可以分为几个主要的区域：<strong>栈区</strong>、<strong>堆区</strong>、<strong>数据段</strong>（包括常量和静态变量的分配区域），以及<strong>代码段</strong>。不同的数据根据其生命周期、可变性和初始化状态，被分配到不同的区域。</p>
+<h3 id="rust-内存分配的主要区域"><a class="header" href="#rust-内存分配的主要区域">Rust 内存分配的主要区域：</a></h3>
 <ol>
 <li>
-<p><strong>布尔类型</strong> (<code>bool</code>)：在 C/C++ 中通常使用 <code>int</code> 来表示布尔值，而在 Rust 中则使用专门的 <code>bool</code> 类型。在 FFI 的上下文中，<code>bool</code> 通常会被转换为 <code>i32</code> 或 <code>u32</code>。</p>
+<p><strong>栈区（Stack）</strong>：</p>
+<ul>
+<li>存储局部变量和临时数据，生命周期由作用域控制。</li>
+<li>栈上的内存分配速度快，但大小有限。</li>
+<li>通常，函数调用的参数和局部变量在栈上分配。</li>
+</ul>
 </li>
 <li>
-<p><strong>字符类型</strong> (<code>char</code>)：Rust 的 <code>char</code> 类型是一个 Unicode 标量值，而 C/C++ 语言中的 <code>char</code> 类型是一个单字节字符。在 FFI 中，通常使用 <code>u16</code> 或 <code>u32</code> 来表示 Unicode 字符，这取决于目标平台的宽字符类型。</p>
+<p><strong>堆区（Heap）</strong>：</p>
+<ul>
+<li>动态分配的内存，如通过<code>Box</code>、<code>Rc</code>、<code>Vec</code>等智能指针进行的分配。</li>
+<li>堆内存由程序员或Rust的所有权系统管理，生命周期灵活，但分配和释放的开销较大。</li>
+<li>堆上的对象通过指针间接访问，因此访问速度较栈慢。</li>
+</ul>
 </li>
 <li>
-<p><strong>字符串类型</strong> (<code>&amp;str</code> 和 <code>String</code>)：在 Rust 中，<code>&amp;str</code> 是一个不可变的引用到有效的 UTF-8 编码的字符串切片，而 <code>String</code> 是一个可变的字符串缓冲区。在 C/C++ 中，字符串通常由一个空终止的字符数组表示。在 FFI 的上下文中，你通常需要使用 <code>*const i8</code> 或 <code>*const u8</code> 来表示 C 字符串。</p>
+<p><strong>数据段（Data Segment）</strong>：</p>
+<ul>
+<li>包含全局变量、静态变量和常量。数据段又细分为以下几部分：</li>
+</ul>
+<ol>
+<li>
+<p><strong>已初始化数据段（.data segment）</strong>：</p>
+<ul>
+<li>存储已初始化的全局变量和静态变量。</li>
+<li>例如，<code>static</code>关键字声明且显式初始化的变量会被存放在此处。它们在程序启动时被分配，并在程序结束时释放。</li>
+<li>可读写。</li>
+</ul>
 </li>
 <li>
-<p><strong>动态数组</strong> (<code>Vec&lt;T&gt;</code>)：Rust 中的 <code>Vec&lt;T&gt;</code> 类型类似于 C/C++ 中的动态数组。在 FFI 中，你通常需要使用裸指针 <code>*mut T</code> 来表示动态分配的数组，并且可能需要额外的长度参数来指示数组的大小。</p>
+<p><strong>未初始化数据段（.bss segment）</strong>：</p>
+<ul>
+<li>存储未初始化的全局变量和静态变量。</li>
+<li>这些变量在程序启动时会被自动初始化为0，但在程序的可执行文件中不占用实际空间。Rust中的未初始化<code>static</code>变量会放在这里。</li>
+<li>可读写。</li>
+</ul>
 </li>
 <li>
-<p><strong>函数指针</strong>：Rust 中的函数指针类型（例如 <code>extern "C" fn(i32, i32) -&gt; i32</code>）可以直接映射到 C/C++ 中的函数指针类型。</p>
-</li>
-<li>
-<p><strong>结构体和枚举</strong>：Rust 的结构体和枚举可以映射到 C/C++ 中的结构体和枚举，但是需要注意内存布局和对齐规则。在 Rust 中使用 <code>repr(C)</code> 属性可以确保结构体具有与 C/C++ 语言相同的布局。</p>
-</li>
-<li>
-<p><strong><code>std::os::raw::c_*</code> 类型</strong>：在 Rust 的标准库中，<code>std::os::raw</code> 模块提供了与 C/C++ 类型直接对应的原始类型，例如 <code>c_char</code>、<code>c_int</code> 等，这些类型在编写 FFI 接口时非常有用。</p>
+<p><strong>只读数据段（.rodata segment，Read-Only Data Segment）</strong>：</p>
+<ul>
+<li>存储常量（<code>const</code>定义的值）和只读数据，如字符串字面量。</li>
+<li>Rust中的常量不会像静态变量那样分配内存空间，而是嵌入到代码中；但字面量等不可变数据会存储在这个段。</li>
+<li>只读，试图修改会导致运行时错误。</li>
+</ul>
 </li>
 </ol>
-<p>请注意，上述对照表并不是详尽无遗的，但它涵盖了大多数常见的场景。在实际使用中，你还需要考虑特定平台和库的细节，以及 Rust 和 C/C++ 之间的任何潜在差异。</p>
+</li>
+<li>
+<p><strong>代码段（Text Segment）</strong>：</p>
+<ul>
+<li>包含程序的可执行指令，是只读区域。</li>
+<li>程序代码在编译时被放入此区域，执行时会从这里读取指令。</li>
+</ul>
+</li>
+</ol>
+<h3 id="常量和静态变量的分配"><a class="header" href="#常量和静态变量的分配">常量和静态变量的分配：</a></h3>
+<ul>
+<li>
+<p><strong>常量（<code>const</code>）</strong>：</p>
+<ul>
+<li>常量在编译时确定，通常不会占用数据段中的内存空间。其值直接嵌入到程序的代码中。</li>
+<li>如果常量是字符串字面量等，它们会存储在只读数据段（<code>.rodata</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>静态变量（<code>static</code>）</strong>：</p>
+<ul>
+<li>静态变量在程序的整个生命周期内都存在。</li>
+<li>已初始化的静态变量存放在<strong>已初始化数据段</strong>（<code>.data</code>）。</li>
+<li>未初始化或默认初始化为0的静态变量存放在<strong>未初始化数据段</strong>（<code>.bss</code>）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a class="header" href="#总结">总结：</a></h3>
+<ul>
+<li><strong>栈区</strong>：局部变量、函数参数等。</li>
+<li><strong>堆区</strong>：动态分配的对象，如<code>Box</code>、<code>Vec</code>等。</li>
+<li><strong>数据段</strong>：
+<ul>
+<li><strong>已初始化数据段（.data）</strong>：已初始化的静态变量和全局变量。</li>
+<li><strong>未初始化数据段（.bss）</strong>：未初始化的静态变量和全局变量，自动初始化为0。</li>
+<li><strong>只读数据段（.rodata）</strong>：只读数据，如常量、字符串字面量。</li>
+</ul>
+</li>
+<li><strong>代码段</strong>：程序的机器指令。</li>
+</ul>
+<p>常量和静态变量根据其初始化状态和可变性分配到不同的数据段，已初始化的数据进入<code>.data</code>，未初始化的数据进入<code>.bss</code>，而只读数据进入<code>.rodata</code>。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../os/firewall.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../rust/ffi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../rust/abi.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../rust/offline.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -346,11 +346,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../os/firewall.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../rust/ffi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../rust/abi.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../rust/offline.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

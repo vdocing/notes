@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>abi</title>
+        <title>os</title>
 
 
         <!-- Custom HTML head -->
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html" class="active"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -236,103 +236,114 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <p>在Rust中使用ABI和FFI与C/C++代码交互时，你需要确保Rust的数据类型能够正确地映射到C/C++的数据类型。以下是一个详细的对照表，列出了Rust中的数据类型与C/C++中的对应类型：</p>
-<h3 id="整数类型"><a class="header" href="#整数类型">整数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>i8</code></td><td><code>signed char</code></td></tr>
-<tr><td><code>u8</code></td><td><code>unsigned char</code></td></tr>
-<tr><td><code>i16</code></td><td><code>short</code></td></tr>
-<tr><td><code>u16</code></td><td><code>unsigned short</code></td></tr>
-<tr><td><code>i32</code></td><td><code>int</code></td></tr>
-<tr><td><code>u32</code></td><td><code>unsigned int</code></td></tr>
-<tr><td><code>i64</code></td><td><code>long long</code></td></tr>
-<tr><td><code>u64</code></td><td><code>unsigned long long</code></td></tr>
-<tr><td><code>isize</code></td><td><code>ptrdiff_t</code> / <code>ssize_t</code></td></tr>
-<tr><td><code>usize</code></td><td><code>size_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="浮点数类型"><a class="header" href="#浮点数类型">浮点数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>f32</code></td><td><code>float</code></td></tr>
-<tr><td><code>f64</code></td><td><code>double</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="布尔类型"><a class="header" href="#布尔类型">布尔类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>bool</code></td><td><code>int</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符类型"><a class="header" href="#字符类型">字符类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>char</code></td><td><code>wchar_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>*const T</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>*mut T</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a str</code></td><td><code>const char *</code></td></tr>
-<tr><td><code>String</code></td><td><code>char *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="数组和向量"><a class="header" href="#数组和向量">数组和向量</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a [T]</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>Vec&lt;T&gt;</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="函数指针"><a class="header" href="#函数指针">函数指针</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>extern "C" fn(...)</code></td><td><code>void (*)()</code></td></tr>
-<tr><td><code>extern "C" fn(i32, i32) -&gt; i32</code></td><td><code>int (*)(int, int)</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="结构体和枚举"><a class="header" href="#结构体和枚举">结构体和枚举</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>struct</code></td><td><code>struct</code></td></tr>
-<tr><td><code>enum</code></td><td><code>enum</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="特殊类型"><a class="header" href="#特殊类型">特殊类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>c_void</code></td><td><code>void</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h3>
+                        <p>设置防火墙并允许某些端口通常涉及以下步骤，具体操作可能因操作系统和防火墙软件的不同而有所差异。以下是如何在不同操作系统上进行这些操作的基本指南：</p>
+<h3 id="windows-防火墙"><a class="header" href="#windows-防火墙">Windows 防火墙</a></h3>
 <ol>
 <li>
-<p><strong>布尔类型</strong> (<code>bool</code>)：在 C/C++ 中通常使用 <code>int</code> 来表示布尔值，而在 Rust 中则使用专门的 <code>bool</code> 类型。在 FFI 的上下文中，<code>bool</code> 通常会被转换为 <code>i32</code> 或 <code>u32</code>。</p>
+<p><strong>打开防火墙设置:</strong></p>
+<ul>
+<li>通过控制面板，找到并打开 <strong>"Windows Defender 防火墙"</strong>。</li>
+<li>或者，在开始菜单中搜索 "防火墙" 并选择 <strong>"Windows Defender 防火墙"</strong>。</li>
+</ul>
 </li>
 <li>
-<p><strong>字符类型</strong> (<code>char</code>)：Rust 的 <code>char</code> 类型是一个 Unicode 标量值，而 C/C++ 语言中的 <code>char</code> 类型是一个单字节字符。在 FFI 中，通常使用 <code>u16</code> 或 <code>u32</code> 来表示 Unicode 字符，这取决于目标平台的宽字符类型。</p>
+<p><strong>允许特定端口:</strong></p>
+<ul>
+<li>在左侧菜单中，点击 <strong>"高级设置"</strong>，将打开 "Windows Defender 防火墙与高级安全" 窗口。</li>
+<li>在左侧点击 <strong>"入站规则"</strong> 或 <strong>"出站规则"</strong>，然后在右侧点击 <strong>"新建规则"</strong>。</li>
+<li>选择 <strong>"端口"</strong> 作为规则类型，点击 <strong>"下一步"</strong>。</li>
+<li>选择 <strong>"TCP"</strong> 或 <strong>"UDP"</strong> 协议，并指定要允许的端口号或端口范围（如 <code>80, 443</code> 或 <code>8000-9000</code>）。</li>
+<li>选择 <strong>"允许连接"</strong>，然后点击 <strong>"下一步"</strong>。</li>
+<li>选择应用此规则的网络类型（域、专用或公用），然后点击 <strong>"下一步"</strong>。</li>
+<li>为规则命名并点击 <strong>"完成"</strong>。</li>
+</ul>
 </li>
 <li>
-<p><strong>字符串类型</strong> (<code>&amp;str</code> 和 <code>String</code>)：在 Rust 中，<code>&amp;str</code> 是一个不可变的引用到有效的 UTF-8 编码的字符串切片，而 <code>String</code> 是一个可变的字符串缓冲区。在 C/C++ 中，字符串通常由一个空终止的字符数组表示。在 FFI 的上下文中，你通常需要使用 <code>*const i8</code> 或 <code>*const u8</code> 来表示 C 字符串。</p>
-</li>
-<li>
-<p><strong>动态数组</strong> (<code>Vec&lt;T&gt;</code>)：Rust 中的 <code>Vec&lt;T&gt;</code> 类型类似于 C/C++ 中的动态数组。在 FFI 中，你通常需要使用裸指针 <code>*mut T</code> 来表示动态分配的数组，并且可能需要额外的长度参数来指示数组的大小。</p>
-</li>
-<li>
-<p><strong>函数指针</strong>：Rust 中的函数指针类型（例如 <code>extern "C" fn(i32, i32) -&gt; i32</code>）可以直接映射到 C/C++ 中的函数指针类型。</p>
-</li>
-<li>
-<p><strong>结构体和枚举</strong>：Rust 的结构体和枚举可以映射到 C/C++ 中的结构体和枚举，但是需要注意内存布局和对齐规则。在 Rust 中使用 <code>repr(C)</code> 属性可以确保结构体具有与 C/C++ 语言相同的布局。</p>
-</li>
-<li>
-<p><strong><code>std::os::raw::c_*</code> 类型</strong>：在 Rust 的标准库中，<code>std::os::raw</code> 模块提供了与 C/C++ 类型直接对应的原始类型，例如 <code>c_char</code>、<code>c_int</code> 等，这些类型在编写 FFI 接口时非常有用。</p>
+<p><strong>验证设置:</strong></p>
+<ul>
+<li>你可以通过 <code>netsh advfirewall firewall show rule name=all</code> 在命令提示符下查看当前的防火墙规则。</li>
+</ul>
 </li>
 </ol>
-<p>请注意，上述对照表并不是详尽无遗的，但它涵盖了大多数常见的场景。在实际使用中，你还需要考虑特定平台和库的细节，以及 Rust 和 C/C++ 之间的任何潜在差异。</p>
+<h3 id="linux-以-ufw-为例"><a class="header" href="#linux-以-ufw-为例">Linux (以 <code>ufw</code> 为例)</a></h3>
+<ol>
+<li>
+<p><strong>安装并启用 <code>ufw</code>:</strong></p>
+<pre><code class="language-bash">sudo apt-get install ufw
+sudo ufw enable
+</code></pre>
+</li>
+<li>
+<p><strong>允许特定端口:</strong></p>
+<ul>
+<li>允许单个端口：
+<pre><code class="language-bash">sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+</code></pre>
+</li>
+<li>允许端口范围：
+<pre><code class="language-bash">sudo ufw allow 8000:9000/tcp
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>查看规则:</strong></p>
+<ul>
+<li>使用以下命令查看当前的规则：
+<pre><code class="language-bash">sudo ufw status
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>禁用特定端口:</strong></p>
+<ul>
+<li>使用以下命令禁用某个端口：
+<pre><code class="language-bash">sudo ufw deny 80/tcp
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="macos-防火墙"><a class="header" href="#macos-防火墙">macOS 防火墙</a></h3>
+<ol>
+<li>
+<p><strong>打开防火墙设置:</strong></p>
+<ul>
+<li>进入 <strong>"系统偏好设置"</strong>，选择 <strong>"安全性与隐私"</strong>，然后选择 <strong>"防火墙"</strong> 标签。</li>
+<li>点击左下角的锁图标以进行更改（如果防火墙未启用，先点击 <strong>"启用防火墙"</strong>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>配置防火墙选项:</strong></p>
+<ul>
+<li>点击 <strong>"防火墙选项"</strong>，你可以添加应用程序或服务，并为其选择允许或阻止连接。</li>
+</ul>
+</li>
+<li>
+<p><strong>通过命令行允许端口:</strong></p>
+<ul>
+<li>macOS 原生防火墙不提供端口级别的设置，如果需要更细粒度的控制，你可能需要使用第三方工具，如 <code>pf</code> (Packet Filter)：
+<pre><code class="language-bash">sudo vim /etc/pf.conf
+</code></pre>
+</li>
+<li>在文件中添加允许规则，然后重新加载配置：
+<pre><code class="language-bash">sudo pfctl -f /etc/pf.conf
+sudo pfctl -e
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a class="header" href="#总结">总结</a></h3>
+<p>具体的防火墙设置步骤会因操作系统和需求不同而有差异。对于大多数用户而言，Windows 和 <code>ufw</code> 是简单易用的防火墙配置工具。如果你有更复杂的需求，可能需要使用高级防火墙工具如 <code>iptables</code>（Linux）或 <code>pf</code>（macOS）。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../os/firewall.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -346,7 +357,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../os/firewall.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

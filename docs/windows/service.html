@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>abi</title>
+        <title>service</title>
 
 
         <!-- Custom HTML head -->
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html" class="active"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> README</a></li><li class="chapter-item expanded "><a href="../os/firewall.html"><strong aria-hidden="true">2.</strong> os</a></li><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.</strong> rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/abi.html"><strong aria-hidden="true">3.1.</strong> abi</a></li><li class="chapter-item expanded "><a href="../rust/ffi.html"><strong aria-hidden="true">3.2.</strong> ffi</a></li><li class="chapter-item expanded "><a href="../rust/mem.html"><strong aria-hidden="true">3.3.</strong> mem</a></li><li class="chapter-item expanded "><a href="../rust/offline.html"><strong aria-hidden="true">3.4.</strong> offline</a></li><li class="chapter-item expanded "><a href="../rust/rc&cell.html"><strong aria-hidden="true">3.5.</strong> rc&cell</a></li></ol></li><li class="chapter-item expanded "><a href="../windows/service.html" class="active"><strong aria-hidden="true">4.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../windows/service.html" class="active"><strong aria-hidden="true">4.1.</strong> service</a></li></ol></li><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.</strong> word</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../word/pg.html"><strong aria-hidden="true">5.1.</strong> pg</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -236,107 +236,135 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <p>在Rust中使用ABI和FFI与C/C++代码交互时，你需要确保Rust的数据类型能够正确地映射到C/C++的数据类型。以下是一个详细的对照表，列出了Rust中的数据类型与C/C++中的对应类型：</p>
-<h3 id="整数类型"><a class="header" href="#整数类型">整数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>i8</code></td><td><code>signed char</code></td></tr>
-<tr><td><code>u8</code></td><td><code>unsigned char</code></td></tr>
-<tr><td><code>i16</code></td><td><code>short</code></td></tr>
-<tr><td><code>u16</code></td><td><code>unsigned short</code></td></tr>
-<tr><td><code>i32</code></td><td><code>int</code></td></tr>
-<tr><td><code>u32</code></td><td><code>unsigned int</code></td></tr>
-<tr><td><code>i64</code></td><td><code>long long</code></td></tr>
-<tr><td><code>u64</code></td><td><code>unsigned long long</code></td></tr>
-<tr><td><code>isize</code></td><td><code>ptrdiff_t</code> / <code>ssize_t</code></td></tr>
-<tr><td><code>usize</code></td><td><code>size_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="浮点数类型"><a class="header" href="#浮点数类型">浮点数类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>f32</code></td><td><code>float</code></td></tr>
-<tr><td><code>f64</code></td><td><code>double</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="布尔类型"><a class="header" href="#布尔类型">布尔类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>bool</code></td><td><code>int</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符类型"><a class="header" href="#字符类型">字符类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>char</code></td><td><code>wchar_t</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>*const T</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>*mut T</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="字符串类型"><a class="header" href="#字符串类型">字符串类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a str</code></td><td><code>const char *</code></td></tr>
-<tr><td><code>String</code></td><td><code>char *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="数组和向量"><a class="header" href="#数组和向量">数组和向量</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>&amp;'a [T]</code></td><td><code>const T *</code></td></tr>
-<tr><td><code>Vec&lt;T&gt;</code></td><td><code>T *</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="函数指针"><a class="header" href="#函数指针">函数指针</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>extern "C" fn(...)</code></td><td><code>void (*)()</code></td></tr>
-<tr><td><code>extern "C" fn(i32, i32) -&gt; i32</code></td><td><code>int (*)(int, int)</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="结构体和枚举"><a class="header" href="#结构体和枚举">结构体和枚举</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>struct</code></td><td><code>struct</code></td></tr>
-<tr><td><code>enum</code></td><td><code>enum</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="特殊类型"><a class="header" href="#特殊类型">特殊类型</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Rust 类型</th><th>C/C++ 类型</th></tr></thead><tbody>
-<tr><td><code>c_void</code></td><td><code>void</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h3>
-<ol>
-<li>
-<p><strong>布尔类型</strong> (<code>bool</code>)：在 C/C++ 中通常使用 <code>int</code> 来表示布尔值，而在 Rust 中则使用专门的 <code>bool</code> 类型。在 FFI 的上下文中，<code>bool</code> 通常会被转换为 <code>i32</code> 或 <code>u32</code>。</p>
+                        <p>Windows系统服务是一类特殊的程序，它们可以在系统启动时自动运行，并在后台持续运行而无需用户交互。服务可以执行多种任务，例如管理硬件设备、监听网络请求、维护系统日志等。下面我将详细介绍如何管理和操作Windows系统服务。</p>
+<h3 id="1-查看服务"><a class="header" href="#1-查看服务">1. 查看服务</a></h3>
+<ul>
+<li><strong>服务管理器</strong>：打开“服务”管理器，可以通过在开始菜单搜索框中输入 <code>services.msc</code> 并回车来快速访问。</li>
+<li><strong>命令行</strong>：使用 <code>sc query</code> 命令列出所有服务，例如：
+<pre><code class="language-cmd">sc query
+</code></pre>
 </li>
-<li>
-<p><strong>字符类型</strong> (<code>char</code>)：Rust 的 <code>char</code> 类型是一个 Unicode 标量值，而 C/C++ 语言中的 <code>char</code> 类型是一个单字节字符。在 FFI 中，通常使用 <code>u16</code> 或 <code>u32</code> 来表示 Unicode 字符，这取决于目标平台的宽字符类型。</p>
+</ul>
+<h3 id="2-启动停止重启服务"><a class="header" href="#2-启动停止重启服务">2. 启动、停止、重启服务</a></h3>
+<ul>
+<li><strong>服务管理器</strong>：
+<ul>
+<li>右键点击服务，选择“启动”、“停止”或“重启”。</li>
+<li>或者，在服务列表中双击服务名称打开服务属性对话框，然后点击“服务状态”标签页，使用相应的按钮。</li>
+</ul>
 </li>
-<li>
-<p><strong>字符串类型</strong> (<code>&amp;str</code> 和 <code>String</code>)：在 Rust 中，<code>&amp;str</code> 是一个不可变的引用到有效的 UTF-8 编码的字符串切片，而 <code>String</code> 是一个可变的字符串缓冲区。在 C/C++ 中，字符串通常由一个空终止的字符数组表示。在 FFI 的上下文中，你通常需要使用 <code>*const i8</code> 或 <code>*const u8</code> 来表示 C 字符串。</p>
+<li><strong>命令行</strong>：
+<ul>
+<li>启动服务：<code>net start servicename</code></li>
+<li>停止服务：<code>net stop servicename</code></li>
+<li>重启服务：先停止再启动，或者使用 PowerShell 的 <code>Restart-Service</code> 命令。</li>
+</ul>
 </li>
-<li>
-<p><strong>动态数组</strong> (<code>Vec&lt;T&gt;</code>)：Rust 中的 <code>Vec&lt;T&gt;</code> 类型类似于 C/C++ 中的动态数组。在 FFI 中，你通常需要使用裸指针 <code>*mut T</code> 来表示动态分配的数组，并且可能需要额外的长度参数来指示数组的大小。</p>
+</ul>
+<h3 id="3-配置服务属性"><a class="header" href="#3-配置服务属性">3. 配置服务属性</a></h3>
+<ul>
+<li><strong>服务管理器</strong>：
+<ul>
+<li>双击服务或右键点击服务并选择“属性”。</li>
+<li>在服务属性对话框中，可以修改启动类型（自动、手动、禁用）、服务描述、登录身份等。</li>
+</ul>
 </li>
-<li>
-<p><strong>函数指针</strong>：Rust 中的函数指针类型（例如 <code>extern "C" fn(i32, i32) -&gt; i32</code>）可以直接映射到 C/C++ 中的函数指针类型。</p>
+<li><strong>命令行</strong>：
+<ul>
+<li>修改启动类型：<code>sc config servicename start= auto|manual|disabled</code></li>
+<li>修改服务描述：<code>sc description servicename "new description"</code></li>
+<li>更改服务账户：<code>sc config servicename obj= "domain\username" password= "password"</code></li>
+</ul>
 </li>
-<li>
-<p><strong>结构体和枚举</strong>：Rust 的结构体和枚举可以映射到 C/C++ 中的结构体和枚举，但是需要注意内存布局和对齐规则。在 Rust 中使用 <code>repr(C)</code> 属性可以确保结构体具有与 C/C++ 语言相同的布局。</p>
+</ul>
+<h3 id="4-创建新的服务"><a class="header" href="#4-创建新的服务">4. 创建新的服务</a></h3>
+<ul>
+<li><strong>命令行</strong>：
+<ul>
+<li>使用 <code>sc create</code> 命令创建服务：
+<pre><code class="language-cmd">sc create servicename binPath= "path\to\service.exe" DisplayName= "Service Display Name"
+</code></pre>
 </li>
-<li>
-<p><strong><code>std::os::raw::c_*</code> 类型</strong>：在 Rust 的标准库中，<code>std::os::raw</code> 模块提供了与 C/C++ 类型直接对应的原始类型，例如 <code>c_char</code>、<code>c_int</code> 等，这些类型在编写 FFI 接口时非常有用。</p>
+<li>配置服务启动类型和其他选项：
+<pre><code class="language-cmd">sc config servicename start= auto
+</code></pre>
 </li>
-</ol>
-<p>请注意，上述对照表并不是详尽无遗的，但它涵盖了大多数常见的场景。在实际使用中，你还需要考虑特定平台和库的细节，以及 Rust 和 C/C++ 之间的任何潜在差异。</p>
+</ul>
+</li>
+<li><strong>图形界面</strong>：
+<ul>
+<li>使用“创建基本服务”向导（通常需要第三方工具或脚本辅助，因为Windows本身没有内置的图形界面创建服务的向导）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-删除服务"><a class="header" href="#5-删除服务">5. 删除服务</a></h3>
+<ul>
+<li><strong>服务管理器</strong>：
+<ul>
+<li>找到服务，右键点击并选择“删除”。</li>
+</ul>
+</li>
+<li><strong>命令行</strong>：
+<ul>
+<li>使用 <code>sc delete</code> 命令删除服务：
+<pre><code class="language-cmd">sc delete servicename
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-其他操作"><a class="header" href="#6-其他操作">6. 其他操作</a></h3>
+<ul>
+<li><strong>查询服务状态</strong>：
+<ul>
+<li>使用 <code>sc query servicename</code> 命令查询服务的状态。</li>
+</ul>
+</li>
+<li><strong>查看服务日志</strong>：
+<ul>
+<li>使用事件查看器（Event Viewer）查看与服务相关的事件日志。</li>
+</ul>
+</li>
+<li><strong>PowerShell</strong>：
+<ul>
+<li>使用 PowerShell 的 <code>Get-Service</code>、<code>Start-Service</code>、<code>Stop-Service</code> 和 <code>Set-Service</code> 命令进行更高级的服务管理。</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例创建并启动一个简单的服务"><a class="header" href="#示例创建并启动一个简单的服务">示例：创建并启动一个简单的服务</a></h3>
+<p>假设你需要创建一个名为 <code>MyService</code> 的服务，它的可执行文件位于 <code>C:\Path\To\MyService.exe</code>，并且希望它在系统启动时自动运行。</p>
+<h4 id="创建服务"><a class="header" href="#创建服务">创建服务</a></h4>
+<ul>
+<li>使用命令行：
+<pre><code class="language-cmd">sc create MyService binPath= "C:\Path\To\MyService.exe" DisplayName= "My Service"
+</code></pre>
+</li>
+</ul>
+<h4 id="设置启动类型为自动"><a class="header" href="#设置启动类型为自动">设置启动类型为自动</a></h4>
+<ul>
+<li>使用命令行：
+<pre><code class="language-cmd">sc config MyService start= auto
+</code></pre>
+</li>
+</ul>
+<h4 id="启动服务"><a class="header" href="#启动服务">启动服务</a></h4>
+<ul>
+<li>使用命令行：
+<pre><code class="language-cmd">net start MyService
+</code></pre>
+</li>
+</ul>
+<p>以上就是关于Windows系统服务的一些基本操作和管理方式。根据实际需求，你可以选择最适合自己的方法来管理服务。如果你有任何具体的问题或需要进一步的帮助，请随时告诉我。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../os/firewall.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../rust/rc&amp;cell.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../rust/abi.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../windows/service.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -346,11 +374,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../os/firewall.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../rust/rc&amp;cell.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../rust/abi.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../windows/service.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
