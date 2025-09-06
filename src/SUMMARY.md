@@ -9,6 +9,7 @@
     - [mem](./rust/mem.md)
     - [offline](./rust/offline.md)
     - [rc&cell](./rust/rc&cell.md)
+    - [type](./rust/type.md)
 - [windows](./windows/service.md)
     - [service](./windows/service.md)
 - [word](./word/pg.md)
